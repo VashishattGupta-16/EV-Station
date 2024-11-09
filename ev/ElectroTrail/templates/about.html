@@ -1,0 +1,231 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+Bijali Vibhagh Kender
+{% endblock %}
+
+{% block heading %}
+Bijali Vibhagh Kender
+{% endblock %}
+
+{% block content %}
+<style>
+    .p{
+        font-size: 1.8em;
+        
+        margin-bottom: 10px;
+    }
+    .content-container {
+        display: flex;
+        align-items: flex-start; /* Align items at the start */
+        overflow: hidden; /* Prevent overflow */
+    }
+
+    .left-content {
+        height: 80vh;
+        width: 50vw; /* Adjust width to avoid overflow */
+        position: relative;
+        padding-left: 2rem; /* Adjust padding */
+        margin-bottom: 8%;
+        margin-top: 10%;
+        overflow: hidden; /* Prevent content from overflowing */
+    }
+
+    .imageToShow {
+        max-width: 100%; /* Make images responsive */
+        height: auto; /* Maintain aspect ratio */
+        position: absolute; /* For animation positioning */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%); /* Center the image */
+        opacity: 0; /* Initially hidden for animation */
+        visibility: hidden; /* Initially hidden for layout */
+    }
+
+    .right-content {
+        margin-top:6vw;
+        margin-bottom:6vw;
+        margin-right:3vw;
+        margin-left: 2%; /* Space between left and right content */
+        padding: 2vw;
+       
+        background-color: #1f2937; /* Optional: Background color */
+        flex: 1; /* Allow right content to take available space */
+        position: relative; /* Keep it in normal flow */
+    }
+
+    @media screen and (max-width: 800px) {
+        .left-content, .right-content {
+            width: 100%; /* Stack on small screens */
+            padding-left: 0;
+            
+            margin-left: 0; /* Remove left margin */
+        }
+    }
+    blockquote {
+        position: absolute; /* Ensure blockquote is layered correctly */
+        left: 30%;
+        top: 50%;
+        padding-left: 20%;
+        font-size:2rem;
+        transform: translate(-50%, -50%);
+        z-index: 1; /* Ensure it's above images */
+        color: white; /* Ensure readability */
+        opacity: 0; /* Initially hidden for animation */
+        visibility: hidden; /* Initially hidden for layout */
+    }
+
+    .header-section {
+        text-align: center;
+        padding: 1rem 6rem;
+        color: #fbbf24; /* Optional: Text color */
+    }
+</style>
+
+<h1 class="header-section">About Us:</h1>
+
+<div class="content-container bg-black text-amber-300">
+    <div class="left-content">
+        <img id="img1" class="imageToShow" src="{% static "images/ev1.jpg" %}" alt="kitty">
+        <img id="img2" class="imageToShow" src="{% static "images/ev2.jpg" %}" alt="kitty">
+        <blockquote id="text1" class="textToShow text-white" cite="https://www.youtube.com/watch?v=PKffm2uI4dk">
+            <p>"Electric vehicles are a key part of a sustainable energy future."</p>
+            <footer> <cite>— Bill Gates</cite></footer>
+        </blockquote>
+        <img id="img3" class="imageToShow " src="{% static "images/ev3.png" %}" alt="kitty">
+    </div>
+    <div class="right-content">
+        <h2 class="contentMarker" data-marker-content="img1">Why Electric Vehicle Charging Stations are Essential</h2>
+        <p>
+            As electric vehicles (EVs) become increasingly popular, the demand for accessible charging infrastructure grows. EV charging stations play a critical role in supporting this transition by providing the necessary convenience for drivers.
+        </p>
+        <p>
+            With government incentives and growing awareness of the environmental impact of traditional fuels, more people are considering switching to electric vehicles. A robust network of charging stations is essential to accelerate this transition.
+        </p>
+
+        <h2 class="contentMarker" data-marker-content="img2">The Future of Transportation: Electric Vehicles</h2>
+        <p>
+            The future of transportation is shifting towards electric mobility. EVs offer numerous benefits, including lower operational costs, reduced reliance on fossil fuels, and enhanced energy efficiency.
+        </p>
+        <p>
+            This revolution in transportation not only makes travel more convenient but also opens doors for innovations in smart mobility solutions, such as integrated charging and autonomous vehicles.
+        </p>
+
+        <h2 class="contentMarker " data-marker-content="text1">A Step Toward Environmental Sustainability</h2>
+        <p>
+            Electric vehicles significantly reduce greenhouse gas emissions and improve air quality. Utilizing renewable energy for charging minimizes the carbon footprint associated with transportation.
+        </p>
+        <p>
+            By choosing electric vehicles and supporting the infrastructure that makes them viable, we contribute to combating climate change and fostering a healthier planet.
+        </p>
+
+        <h2 class="contentMarker" data-marker-content="img3">How Bijali Vibhagh Kender Supports EV Users</h2>
+        <p>
+            Our website serves as a comprehensive resource for electric vehicle owners. From locating nearby charging stations to understanding EV maintenance and benefits, we provide valuable information that enhances your experience.
+        </p>
+        <p>
+            We offer real-time updates on charging station availability and features, ensuring you have the information you need for a seamless journey.
+        </p>
+
+        <h2>Customer Testimonials</h2>
+        <blockquote>
+            <p>"Bijali Vibhagh Kender has transformed my electric vehicle experience! The charging stations are fast and conveniently located."</p>
+            <cite>— Priya Sharma</cite>
+        </blockquote>
+        <blockquote>
+            <p>"The staff is incredibly knowledgeable and helpful. I trust them with all my EV maintenance needs!"</p>
+            <cite>— Rajesh Kumar</cite>
+        </blockquote>
+
+        <h2>Contact Us</h2>
+        <p>
+            For inquiries, reach us at: <a href="mailto:vassugarg00786@gmail.com">vassugarg00786@gmail.com</a>
+        </p>
+        <p>
+            We’re here to help you with any questions or concerns you may have regarding our services. Feel free to reach out anytime!
+        </p>
+    </div>
+</div>
+<h1 class="header-section">That's it!</h1>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.defaults({ overwrite: 'auto' });
+
+    gsap.set(".left-content > *", { xPercent: -50, yPercent: -50 });
+
+    const ST = ScrollTrigger.create({
+        trigger: ".content-container",
+        start: "top top",
+        end: "bottom bottom",
+        onUpdate: getCurrentSection,
+        pin: ".left-content"
+    });
+
+    const contentMarkers = gsap.utils.toArray(".contentMarker");
+
+    contentMarkers.forEach(marker => {
+        marker.content = document.querySelector(`#${marker.dataset.markerContent}`);
+
+        if (marker.content.tagName === "IMG") {
+            gsap.set(marker.content, { transformOrigin: "center" });
+
+            marker.content.enter = function() {
+                gsap.fromTo(marker.content, { autoAlpha: 0, scale: 0.8 }, { duration: 0.3, autoAlpha: 1, scale: 1 });
+            };
+        } else if (marker.content.tagName === "BLOCKQUOTE") {
+            gsap.set(marker.content, { transformOrigin: "left center" });
+
+            marker.content.enter = function() {
+                gsap.fromTo(marker.content, { autoAlpha: 0, rotateY: 50 }, { duration: 0.3, autoAlpha: 1, rotateY: 0 });
+            };
+        }
+
+        marker.content.leave = function() {
+            gsap.to(marker.content, {
+                duration: 0.1,
+                autoAlpha: 0,
+                scale: 0.8, // Shrink slightly before hiding
+                onComplete: () => {
+                    gsap.set(marker.content, { visibility: 'hidden' });
+                }
+            });
+        };
+    });
+
+    let lastContent;
+    function getCurrentSection() {
+        let newContent;
+        const currScroll = scrollY;
+
+        contentMarkers.forEach(marker => {
+            if (currScroll > marker.offsetTop) {
+                newContent = marker.content;
+            }
+        });
+
+        if (newContent && (lastContent == null || !newContent.isSameNode(lastContent))) {
+            if (lastContent) {
+                lastContent.leave();
+            }
+
+            newContent.enter();
+            lastContent = newContent;
+        }
+    }
+
+    const media = window.matchMedia("screen and (max-width: 600px)");
+    ScrollTrigger.addEventListener("refreshInit", checkSTState);
+    checkSTState();
+
+    function checkSTState() {
+        if (media.matches) {
+            ST.disable();
+        } else {
+            ST.enable();
+        }
+    }
+</script>
+{% endblock %}

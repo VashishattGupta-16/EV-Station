@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+ElectroTrail
+{% endblock %}
+
+{% block heading %}
+Logged out
+
+{% endblock %}
+
+{% block content %}
+
+{% csrf_token %}
+
+<p>
+    u have logeed out
+   <a href="{% url 'login' %}">Register</a> 
+</p>
+{% endblock %}

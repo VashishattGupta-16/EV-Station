@@ -1,0 +1,25 @@
+.venv
+package.json
+db.sqlite3
+__pycache__/
+
+/static/
+/media/
+
+# IDEs and Editors
+.vscode/
+.idea/
+
+# Log Files
+*.log
+
+# macOS specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
+
+# Python egg files
+*.egg
+*.egg-info
+.eggs/

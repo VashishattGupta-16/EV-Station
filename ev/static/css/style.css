@@ -1,0 +1,19 @@
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.gradient-background {
+    background: linear-gradient(270deg, #6b6bff, #f83c6d, #ffb75e);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    min-height: 100vh; /* Ensures full height */
+}
+

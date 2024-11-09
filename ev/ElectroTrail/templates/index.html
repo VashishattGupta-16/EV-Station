@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+Vehicle Index
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="flex flex-col-2  md:flex-row justify-between space-y-4 md:space-y-0 md:space-x-4 text-white p-6">
+    <div class="shadow-md m-4 border-2 border-white rounded-lg bg-gray-800 bg-opacity-70 p-4 w-full md:w-1/2 overflow-y-auto" style="max-height: 400px;">
+        <h2 class="text-xl font-semibold mb-4">List of Vehicles:</h2>
+        <ul class="list-none">
+            {% for vehicle in vehicles %}
+                <li class="py-2 border-b border-white text-capitalize flex justify-between items-center">
+                    <a href="{% url 'charge'  %}" class="text-white">
+                        {{ vehicle.model_name }} - {{ vehicle.company_name }} ({{ vehicle.vehicle_type }} - {{ vehicle.vehicle_percentage }}%) {{ vehicle.created_at }}
+                    </a>
+                    <form action="{% url 'vehicle_delete' vehicle.id %}" method="post" class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="text-red-500 hover:text-red-600">Delete</button>
+                    </form>
+                </li>
+            {% empty %}
+                <li class="py-2">No vehicles available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+
+    <div class="shadow-md border-2 border-white rounded-lg bg-gray-800 bg-opacity-70 p-3 w-full md:w-1/2">
+        <h2 class="text-xl font-semibold mb-4">Add a New Vehicle :</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="text-xl text-white px-2 text-capitalize">{{ form.as_p }}</div>
+            <button type="submit" class="mt-4 bg-green-500 text-black py-2 px-4 rounded hover:bg-green-600">Submit</button>
+        </form>
+    </div>
+</div>
+{% endif %}
+<script src="{% static 'script/sc.js' %}"></script>
+{% endblock %}

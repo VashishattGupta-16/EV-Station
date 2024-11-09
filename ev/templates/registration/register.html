@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+ElectroTrail
+{% endblock %}
+
+{% block heading %}
+<h1 class="text-2xlfont-bold p-2 mb-4">Registration Form</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="flex justify-center mt-2 text-black items-center h-screen p-3">
+    <form class="bg-white shadow-md rounded p-4  mb-4 w-full max-w-sm" method="post">
+        {% csrf_token %}
+        
+        <h2 class="text-lg font-semibold mb-4">Create Your Account</h2>
+
+        {{ form.as_p }}
+
+        <div class="flex items-center justify-between mt-4">
+            <button
+                type="submit"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            >
+                Register
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

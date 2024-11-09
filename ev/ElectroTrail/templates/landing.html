@@ -1,0 +1,78 @@
+{% load static %}
+{% load tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+
+    <link rel="stylesheet" href="{% static 'css/wel.css' %}"> <!-- Link to your CSS file -->
+    <script src="{% static 'script/sc.js' %}" defer></script> <!-- Link to your JS file -->
+    {% tailwind_css %}
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in forwards; /* Use forwards to retain end state */
+        }
+        .hidden {
+            display: none; /* Hide element */
+        }
+    </style>
+</head>
+<body class="bg-gray-800 text-gray-800">
+    <div class="relative ">
+        <header class="flex items-center justify-between p-8 bg-orange-200 shadow-md">
+            <h1 id="welcomeText" class="text-5xl font-bold hidden">Welcome to Our Site</h1>
+            <img class="rounded w-52 h-52 object-cover mr-4 fade-in" src="{% static 'videos/est.2035.gif' %}" alt="Description of the GIF" width="640" height="360">
+
+        </header>
+        <div class="text-center mt-10">
+            <p id="discoverText" class="text-lg text-white hidden">Discover amazing features and benefits!</p>
+            <button id="getStartedBtn" class="mt-4 inline-block px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 transition">Get Started</button>
+        </div>
+    </div>
+
+    <section id="features" class="mt-16">
+        <h2 class="text-2xl text-white font-semibold text-center fade-in">Features</h2>
+        <div class="flex flex-wrap justify-center gap-8 mt-8">
+            <div class="feature-item text-white bg-gray-500 p-6 rounded shadow-md hover:shadow-lg transition transform hover:scale-105">
+                <h3 class="text-xl font-semibold">Easy Charging </h3>
+                <p>Detail about feature one.</p>
+            </div>
+            <div class="feature-item text-white bg-gray-500 p-6 rounded shadow-md hover:shadow-lg transition transform hover:scale-105">
+                <h3 class="text-xl font-semibold">Cheap and Affordable </h3>
+                <p>Detail about feature two.</p>
+            </div>
+            <div class="feature-item text-white bg-gray-500 p-6 rounded shadow-md hover:shadow-lg transition transform hover:scale-105">
+                <h3 class="text-xl font-semibold">Eco-Friendly</h3>
+                <p>Detail about feature three.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white text-center py-4 mt-16">
+        <p>© 2024 Your Company. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Fade in text after the page loads
+        window.onload = function() {
+            document.getElementById('welcomeText').classList.remove('hidden');
+            document.getElementById('welcomeText').classList.add('fade-in');
+
+            document.getElementById('discoverText').classList.remove('hidden');
+            document.getElementById('discoverText').classList.add('fade-in');
+        };
+
+        // Button click event to redirect
+        document.getElementById('getStartedBtn').addEventListener('click', function() {
+            alert('Getting Started! Redirecting to login...');
+            window.location.href = "{% url 'login' %}"; // Redirecting to login page
+        });
+    </script>
+</body>
+</html>

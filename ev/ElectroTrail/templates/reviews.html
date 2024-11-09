@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %} ElectroTrail {% endblock %} 
+{% block heading %}
+ Reviews
+  {% endblock %} 
+
+{% block content %}
+<div class="bg-gray-800 bg-opacity-75 backdrop-blur-lg shadow-lg py-8 rounded ">
+  <div class="container mx-auto px-4">
+    <h1 class="text-4xl font-bold  text-center mb-6">
+      Welcome to ElectroTrail!
+    </h1>
+    <p class="text-xl  text-center mb-8">
+      This is a platform where you can review and share your experiences with our electric vehicles (EVs).
+    </p>
+
+    <div class="bg-gray-900 bg-opacity-75 backdrop-blur-lg shadow-lg rounded-lg p-6 mb-8">
+      <h2 class="text-3xl font-semibold text-white text-center mb-4">Customer Reviews</h2>
+   
+      {% if user.is_authenticated %}
+       <div class="flex flex-wrap justify-center mb-4">
+        <a href="{% url 'create_review' %}">
+          <button class="bg-red-500 p-2 rounded text-white">Create</button>
+        </a>
+      </div>
+      {% endif %}
+     
+     
+
+      <div class="flex flex-wrap justify-center">
+        {% for review in reviews %}
+        <div class="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 m-4">
+          <div class="border rounded-lg overflow-hidden transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
+            {% if review.photo %}
+            <img src="{{ review.photo.url }}" class="w-full h-48 object-cover" alt="Review Photo" />
+            {% endif %}
+            <div class="p-4 text-white">
+              <h5 class="text-xl font-bold">{{ review.user.username }}</h5>
+              <p class=' border-2 p-2 text-xs'>{{ review.created_at }}</p>
+              <p>{{ review.text }}</p>
+              {% if review.user == user %}
+              <div class="flex space-x-2 mt-2">
+                <a href="{% url 'update_review' review.id %}">
+                  <button class="w-full bg-yellow-500 text-white font-semibold p-2 rounded transition duration-200 hover:bg-yellow-400">Edit</button>
+                </a>
+                <a href="{% url 'delete' review.id %}">
+                  <button class="w-full bg-red-500 text-white font-semibold p-2 rounded transition duration-200 hover:bg-red-400">Delete</button>
+                </a>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <p class="text-gray-600 text-center">No reviews available.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

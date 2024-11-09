@@ -1,0 +1,82 @@
+/* Basic Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+
+.features {
+    padding: 2rem;
+    background-color: #2d3748; /* Lighter background for features */
+    color: white; /* Text color */
+}
+
+.feature-list {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.feature-item {
+    background: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    padding: 1rem;
+    border-radius: 8px;
+    width: 30%; /* Adjust width as needed */
+    opacity: 0; /* Initially hidden for animation */
+    transform: translateY(20px); /* Initial position for zoom effect */
+    animation: zoomIn 0.5s forwards; /* Animation */
+}
+
+/* Animation Keyframes */
+@keyframes zoomIn {
+    to {
+        opacity: 1; /* Final opacity */
+        transform: translateY(0); /* Final position */
+    }
+}
+
+.fade-in {
+    opacity: 0; /* Initially hidden */
+    animation: fadeIn 1s forwards; /* Animation */
+    animation-delay: 0.5s; /* Delay for fade-in */
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1; /* Final opacity */
+    }
+}
+
+.slide-in {
+    opacity: 0; /* Initially hidden */
+    transform: translateX(-20px); /* Slide from left */
+    animation: slideIn 1s forwards; /* Animation */
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1; /* Final opacity */
+        transform: translateX(0); /* Final position */
+    }
+}
+
+.bounce {
+    display: inline-block;
+    animation: bounce 1s infinite; /* Infinite bounce animation */
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 1rem;
+}

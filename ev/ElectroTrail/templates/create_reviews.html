@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+ElectroTail
+{% endblock %}
+
+{% block heading %}
+Create Review
+{% endblock %}
+
+{% block content %}
+
+    <form method="post" enctype="multipart/form-data" class = 'form'>
+        {% csrf_token %}
+        <div class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md text-orange-500">
+            <h2 class="text-2xl font-bold mb-4 ">
+                {% if form.instance.pk %}
+                    Edit Review
+                {% else %}
+                    Create New Review!
+                {% endif %}
+            </h2>
+            <div class="space-y-4">
+                {{ form.as_p }}
+                
+               <a href="">
+                <button type="submit" class="w-full  text-orange-500 font-semibold py-2 rounded hover:bg-sky-700 transition duration-200">
+                    Submit
+                </button>
+               </a>
+               
+            </div>
+    </form>
+</div>
+{% endblock %}

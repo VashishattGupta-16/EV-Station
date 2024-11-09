@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    <h1 class="text-2xl-capitaize flex justify-center">
+        Charging Information for {{ user.username }}
+    </h1>
+{% endblock %}
+
+{% block content %}
+
+   {% for vehicle in vehicles %}
+  
+   <div class="mt-4 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-4">Charging Station Details</h2>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-semibold">Estimated Time to Charge:</label>
+        {% if vehicle.vehicle_percentage == '10' %}
+        <p class="text-gray-600"> 5 hours 30 minutes</p>
+        {% elif vehicle.vehicle_percentage == '20' %}
+        <p class="text-gray-600">5 hours </p>
+        {% elif vehicle.vehicle_percentage == '30' %}
+        <p class="text-gray-600">4 hours 30 minutes </p>
+        {% elif vehicle.vehicle_percentage == '40' %}
+        <p class="text-gray-600">3 hours  </p>
+        {% elif vehicle.vehicle_percentage == '50' %}
+        <p class="text-gray-600">3 hours 30 minutes </p>
+        {% elif vehicle.vehicle_percentage == '60' %}
+        <p class="text-gray-600">3 hours 10 minutes  </p>
+        {% elif vehicle.vehicle_percentage == '70' %}
+        <p class="text-gray-600">2 hours </p>
+        {% elif vehicle.vehicle_percentage == '80' %}
+        <p class="text-gray-600">1 hours 25 minutes </p>
+        {% elif vehicle.vehicle_percentage == '90' %}
+        <p class="text-gray-600"> 45 minutes </p>
+        {% elif vehicle.vehicle_percentage == '100' %}
+        <p class="text-gray-600"> Your Vehicle is fully charged </p>
+        {% endif %}
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-semibold">Charging Speed:</label>
+        <p class="text-gray-600">50 kW</p>
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-semibold">Battery Health:</label>
+        <p class="text-gray-600">85%</p>
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-semibold">Current Battery Level:</label>
+        <p class="text-gray-600">{{ vehicle.vehicle_percentage }} % </p>
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-semibold">Charging Station Location:</label>
+        <p class="text-gray-600">123 Electric Ave, Cityville</p>
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-semibold">Next Estimated Charge:</label>
+        <p class="text-gray-600">12:30 PM</p>
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 font-semibold">Additional Notes:</label>
+        <p class="text-gray-600">Free coffee available at the station!</p>
+    </div>
+
+    <button class="w-full mt-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Start Charging</button>
+</div>
+
+{% endfor %}
+
+{% endblock %}
